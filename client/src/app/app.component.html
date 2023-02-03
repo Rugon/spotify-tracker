@@ -1,0 +1,5 @@
+<app-top-bar [loggedin]="loggedin"></app-top-bar>
+
+<app-login-frame *ngIf="!loggedin" [loggedin]="loggedin"></app-login-frame>
+
+<app-data-frame [hidden]="!loggedin" [loggedin]="loggedin"></app-data-frame>

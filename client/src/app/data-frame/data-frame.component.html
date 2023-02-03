@@ -1,0 +1,214 @@
+
+<div class="top-container container" *ngIf="loadedData">
+
+    <!-- |||||||||||||||||||| DATOS DE USUARIO |||||||||||||||||||| -->
+
+    <mat-card id="user-stats">
+        <mat-card-header>
+            <div mat-card-avatar class="profile-image" [ngStyle]="{'background-image': 'url(' + userData.img + ')'}"></div>
+            <mat-card-title>{{userData.username}}</mat-card-title>
+            <mat-card-subtitle>Profile data:</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <table>
+                <tr>
+                    <td class="first-td">Email:</td>
+                    <td class="second-td">{{userData.email}}</td>
+                </tr>
+                <tr>
+                    <td class="first-td">Country:</td>
+                    <td class="second-td">{{userData.country}}</td>
+                </tr>
+                <tr>
+                    <td class="first-td">Followers:</td>
+                    <td class="second-td">{{userData.followers}}</td>
+                </tr>
+            </table>
+        </mat-card-content>
+    </mat-card>
+
+    <!-- |||||||||||||||||||| BOTONES DE ACCIÓN |||||||||||||||||||| -->
+
+    <div class="rigth-top-container">
+        <div class="button" (click)="topSongs('short')">
+            Most listened songs
+        </div>
+        <div class="button" (click)="topArtists('short')">
+            Most listened artists
+        </div>
+        <div class="button last" (click)="userPlaylists()">
+            Playlist explorer
+        </div>
+    </div>
+
+</div>
+
+<!-- |||||||||||||||||||| LISTA DE CANCIONES |||||||||||||||||||| -->
+
+<div class="list-container container" *ngIf="showSongs">
+
+    <div class="feature-name">Most listened songs</div>
+
+    <select #timeRange (change)="topSongs(timeRange.value)">
+        <option *ngFor="let option of timeOptions" [value]="option.value">
+            {{ option.text }}
+        </option>
+    </select>
+
+    <div class="table">
+        <table mat-table [dataSource]="songsDataSource">
+
+            <ng-container matColumnDef="num">
+                <th mat-header-cell *matHeaderCellDef>#</th>
+                <td mat-cell *matCellDef="let element"> {{element.num}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="song">
+                <th mat-header-cell *matHeaderCellDef>Title</th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="artist">
+                <th mat-header-cell *matHeaderCellDef>Artist</th>
+                <td mat-cell *matCellDef="let element"> {{element.artist}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="link">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element"> 
+                    <a href={{element.link}} target="_blank" title="Listen on Spotify"> 
+                        <img class="spotify-icon" src="../../assets/Spotify_Icon_Green.png"> 
+                    </a>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplaySongs"></tr>
+            <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplaySongs;"></tr>
+
+        </table>
+    </div>
+
+</div>
+
+<!-- |||||||||||||||||||| LISTA DE ARTISTAS |||||||||||||||||||| -->
+
+<div class="list-container container" *ngIf="showArtists">
+
+    <div class="feature-name">Most listened artists</div>
+
+    <select #timeRange (change)="topArtists(timeRange.value)">
+        <option *ngFor="let option of timeOptions" [value]="option.value">
+            {{ option.text }}
+        </option>
+    </select>
+
+    <div class="table">
+        <table mat-table [dataSource]="artistsDataSource">
+
+            <ng-container matColumnDef="num">
+                <th mat-header-cell *matHeaderCellDef>#</th>
+                <td mat-cell *matCellDef="let element"> {{element.num}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="artistName">
+                <th mat-header-cell *matHeaderCellDef>Artist</th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="link">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element"> 
+                    <a href={{element.link}} target="_blank" title="Listen on Spotify"> 
+                        <img class="spotify-icon" src="../../assets/Spotify_Icon_Green.png"> 
+                    </a> 
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplayArtists"></tr>
+            <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplayArtists"></tr>
+
+        </table>
+    </div>
+
+</div>
+
+<!-- |||||||||||||||||||| LISTA DE PLAYLIST |||||||||||||||||||| -->
+
+<div class="list-container container" *ngIf="showPlaylists">
+
+    <div class="feature-name">Playlist explorer</div>
+
+    <div class="table playlists">
+        <table mat-table [dataSource]="playlistsDataSource">
+
+            <ng-container matColumnDef="img">
+                <td mat-cell *matCellDef="let element"> <img class="playlist-cover" src={{element.img}}> </td>
+            </ng-container>
+
+            <ng-container matColumnDef="playlistName">
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="link">
+                <td mat-cell *matCellDef="let element"> 
+                    <a href={{element.link}} target="_blank" title="Listen on Spotify"> 
+                        <img class="spotify-icon" src="../../assets/Spotify_Icon_Green.png"> 
+                    </a>
+                </td>
+            </ng-container>
+
+            <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplayPlaylists" (click)="clickPlaylist(myRowData, $event)"></tr>
+
+        </table>
+    </div>
+
+</div>
+
+<!-- |||||||||||||||||||| PLAYLIST |||||||||||||||||||| -->
+
+<div class="list-container container" *ngIf="showPLTracks">
+
+    <div class="playlist-data">
+        <img class="playlist-data-cover" src={{selectedPlaylist.img}}>
+        <div class="playlist-data-name">{{selectedPlaylist.name}}</div>
+        <a class="playlist-data-link" href={{selectedPlaylist.link}} target="_blank" title="Listen on Spotify"> 
+            <img class="playlist-data-spotify-icon" src="../../assets/Spotify_Icon_Green.png"> 
+        </a>
+    </div>
+
+    <div class="table">
+        <table mat-table [dataSource]="playlistTracksDataSource">
+
+            <ng-container matColumnDef="num">
+                <th mat-header-cell *matHeaderCellDef>#</th>
+                <td mat-cell *matCellDef="let element"> {{element.num}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="song">
+                <th mat-header-cell *matHeaderCellDef>Title</th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="artist">
+                <th mat-header-cell *matHeaderCellDef>Artist</th>
+                <td mat-cell *matCellDef="let element"> {{element.artist}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="link">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element"> 
+                    <a href={{element.link}} target="_blank" title="Listen on Spotify"> 
+                        <img class="spotify-icon" src="../../assets/Spotify_Icon_Green.png"> 
+                    </a>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplaySongs"></tr>
+            <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplaySongs;"></tr>
+
+        </table>
+    </div>
+
+</div>
+
+<app-scroll-up></app-scroll-up>

@@ -1,0 +1,20 @@
+/* CSS File */
+
+.scroll-up-button {
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #35c74a;
+    background-image: url('../../assets/arrow-up.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 40%;
+    cursor: pointer;
+}
+
+.scroll-up-button:hover {
+    background-color: #299b3a;
+}

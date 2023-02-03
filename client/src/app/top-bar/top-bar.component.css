@@ -1,0 +1,11 @@
+/* CSS File */
+
+.title {
+    font-size: 32px;
+}
+
+.logout {
+    float: right;
+    font-size: 16px;
+    cursor: pointer;
+}

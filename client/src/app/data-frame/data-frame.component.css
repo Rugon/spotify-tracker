@@ -1,0 +1,226 @@
+/* CSS File */
+
+.container {
+    padding-left: 35%;
+    padding-right: 35%;
+}
+
+/* Responsive design */
+
+@media only screen and (max-width: 2200px) {
+    .container {
+        padding-left: 25%;
+        padding-right: 25%;
+    }
+}
+
+@media only screen and (max-width: 1500px) {
+    .container {
+        padding-left: 15%;
+        padding-right: 15%;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .container {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+}
+
+.top-container {
+    padding-top: 32px;
+    padding-bottom: 16px;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+}
+
+/* Profile data card */
+
+.left-top-container {
+    width: fit-content;
+    padding: 16px;
+}
+
+#user-stats {
+    width: fit-content;
+    background-color: rgb(60, 60, 60);
+}
+
+mat-card-title {
+    font-size: larger;
+}
+
+mat-card-subtitle {
+    font-size: medium;
+    font-weight: lighter;
+}
+
+.profile-image {
+    background-size: cover;
+}
+
+.first-td {
+    padding-right: 16px;
+}
+
+.second-td {
+    font-weight: lighter;
+}
+
+/* Buttons */
+
+.rigth-top-container {
+    width: 100%;
+    padding-left: 16px;
+}
+
+.button {
+    background-color: #35c74a;
+    color: black;
+    padding: 16px 32px;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-bottom: 8px;
+}
+
+.button.last {
+    margin-bottom: 0;
+}
+
+.button:hover {
+    background-color: #299b3a;
+}
+
+/* Lists */
+
+.list-container {
+    padding-top: 16px;
+    padding-bottom: 32px;
+    width: 100%;
+    height: fit-content;
+    display: block;
+}
+
+select {
+    background-color: rgb(60, 60, 60);
+    border: none;
+    color: #ffffff;
+    font-size: 16px;
+    height: 32px;
+    padding: 0 16px;
+    border-radius: 5px;
+}
+
+option {
+    color: #131613;
+    font-size: 16px;
+}
+
+.table {
+    background-color: rgb(60, 60, 60);
+    border-radius: 5px;
+    margin-top: 32px;
+}
+
+table {
+    margin: 0;
+    width: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+/* Custom tables */
+
+.mat-row:hover {
+    background-color: rgb(50, 50, 50);
+}
+
+.mat-cell {
+    border: none;   
+    max-height: 60px;
+}
+
+.mat-header-cell {
+    border: none;
+    font-weight: initial;
+    background-color: rgb(50, 50, 50);
+}
+
+.mat-column-num {
+    width: 72px;
+    padding-right: 24px;
+}
+
+.mat-column-song {
+    width: 45%;
+}
+
+.mat-column-link {
+    width: 24px;
+}
+
+.spotify-icon {
+    width: 24px;
+}
+
+.spotify-icon:hover {
+    filter: brightness(1.25);
+}
+
+/* Playlist tables */
+
+.feature-name {
+    font-size: 32px;
+    margin-bottom: 32px;
+}
+
+.mat-column-img {
+    width: 60px;
+    padding-right: 24px;
+}
+
+.playlist-cover {
+    width: 60px;
+    padding-top: 4px;
+}
+
+.table.playlists {
+    margin: 0;
+    cursor: pointer;
+    padding: 8px 0;
+}
+
+/* Playlist data */
+
+.playlist-data {
+    width: 100%;
+    display: flex;
+}
+
+.playlist-data-cover {
+    width: 15%;
+    margin-right: 24px;
+    border-radius: 5px;
+}
+
+.playlist-data-name {
+    width: calc(85% - 72px);
+    font-size: 32px;
+}
+
+.playlist-data-link {
+    width: 72px;
+    padding-left: 24px;
+}
+
+.playlist-data-spotify-icon {
+    width: 48px;
+}
+
+.playlist-data-spotify-icon:hover {
+    filter: brightness(1.25);
+}
